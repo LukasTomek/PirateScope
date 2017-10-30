@@ -14,7 +14,7 @@ Operating System:
 
 Software:
 - Python 2.x (http://www.python.org/)
-- wxPython 2.8 or later (http://www.wxpython.org/)
+- wxPython 4.0 or later (http://www.wxpython.org/)
 - numpy (http://www.numpy.org/)
 
 Hardware:
@@ -34,6 +34,8 @@ Alternatively, as nicely pointed out by @esalgado, one can use
 MacPorts to simplify the process. (This is also described in
 INSTALL.OSX.)
 
+Under Windows just download PirateScope.exe from Releases.
+For build use pyinstaller.
 
 Usage notes
 -----------
