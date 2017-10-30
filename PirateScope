@@ -19,11 +19,12 @@
 import wx
 from wx.lib import plot
 from wx.lib.wordwrap import wordwrap
+from wx.adv import AboutDialogInfo, AboutBox
 
-import serial, time, sys, os
+import serial, time
 from threading import Thread
 
-from numpy import *
+from numpy import ones, linspace, sin, pi, zeros, roll, arange
 from numpy.fft import rfft
 
 
@@ -272,7 +273,7 @@ class MainWindow(wx.Frame):
 		self.plotpanel = wx.Panel(self.panel)
 		self.plotpanel.SetBackgroundColour('white')
 		self.plot = plot.PlotCanvas(self.plotpanel)
-		self.plot.SetGridColour('grey')
+# 		self.plot.SetGridColour('grey')
 		self.plot.SetEnableGrid(True)
 
 		self.TrigLevSlider = wx.Slider(self.plotpanel, wx.ID_ANY,
@@ -297,7 +298,7 @@ class MainWindow(wx.Frame):
 		self.RateChoiceText = wx.StaticText(self.contpanel, wx.ID_ANY, 'Hz')
 		self.RateChoice = wx.Choice(self.contpanel, wx.ID_ANY,
 				choices = [str(int(i)) for i in BPO.BaseRate/arange(1,11)])
-                self.RateChoice.SetSelection(0)
+		self.RateChoice.SetSelection(0)
 				
 		self.WinSpinCtrlText = wx.StaticText(self.contpanel, wx.ID_ANY, 'Samples/win:')
 		self.WinSpinCtrl = wx.SpinCtrl(self.contpanel, wx.ID_ANY,
@@ -534,7 +535,7 @@ class MainWindow(wx.Frame):
 	# Display about box:
 	def OnHelpAbout(self, event):
 
-		info = wx.AboutDialogInfo()
+		info = AboutDialogInfo()
 
 		info.Name = "PirateScope"
 		info.Copyright = "(C) 2010 Tim Vaughan"
@@ -559,7 +560,7 @@ class MainWindow(wx.Frame):
 			"and spectrum analysis are supported.",
 			350, wx.ClientDC(self))
 
-		wx.AboutBox(info)
+		AboutBox(info)
 	
 	# Set Bus Pirate serial device:
 	def OnFileSetDevice(self, event):
@@ -584,7 +585,7 @@ class MainWindow(wx.Frame):
 					defaultDir=".",
 					defaultFile="",
 					wildcard="*.txt",
-					style=wx.SAVE)
+					style=wx.FD_SAVE)
 
 			if dlg.ShowModal() == wx.ID_OK:
 
